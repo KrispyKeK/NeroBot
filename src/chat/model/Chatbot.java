@@ -32,7 +32,7 @@ public class Chatbot
 		this.intro = "Hey what's going on guys, it's Kripparian here";
 		this.currentTime = LocalTime.now();
 		this.topics = new String[7];
-		this.verbs = new String[4];
+		this.verbs = new String[10];
 		this.followUps = new String[5];
 		
 		buildVerbs();
@@ -45,13 +45,13 @@ public class Chatbot
 	
 	//Adds to the list Topics, and is called within Chatbot
 	private void buildTopics() {
-		topics[0] = "Tokyo Ghoul";
-		topics[1] = "Cardfight Vanguard";
-		topics[2] = "Statistic Ap";
-		topics[3] = "Physics Ap";
-		topics[4]  = "Robotics";
-		topics[5] = "Martial Arts";
-		topics[6] = "Genji Main";
+		topics[0] = "Rome";
+		topics[1] = "Enemies";
+		topics[2] = "Sparta";
+		topics[3] = "Theatre";
+		topics[4] = "Literature";
+		topics[5] = "Singing";
+		topics[6] = "The people of Rome";
 	}
 	//Adds to the list verbs, and is called within Chatbot
 	private void buildVerbs() {
@@ -59,23 +59,30 @@ public class Chatbot
 		verbs[1] = "dislike ";
 		verbs[2] = "am ambivalent about ";
 		verbs[3] = "am thinking about ";
+		verbs[4] = "hate ";
+		verbs[5] = "love ";
+		verbs[6] = "despise ";
+		verbs[7] = "acustom to ";
+		verbs[8] = "weary about ";
+		verbs[9] = "disappointed about";
+		
 				
 	}
 	
 	private void buildMovieList()
 	{
-		Movie ngnl = new Movie("No Game No Life");
-		Movie boruto = new Movie("Boruto New Generation");
-		Movie silent = new Movie("A Silent Voice");
-		Movie name = new Movie("Your Name");
-		Movie south = new Movie("South Park Movie");
-		Movie tokyo = new Movie("Tokyo Ghoul");
-		movieList.add(ngnl);
-		movieList.add(boruto);
-		movieList.add(silent);
-		movieList.add(name);
-		movieList.add(south);
-		movieList.add(tokyo);
+		Movie sparta = new Movie("Sparta");
+		Movie glad = new Movie("Gladiator");
+		Movie legend = new Movie("Hercules");
+		Movie romance = new Movie("Romeo and Juliett");
+		Movie king = new Movie("Julius Caesar");
+		Movie tempest = new Movie("The Tempest");
+		movieList.add(sparta);
+		movieList.add(glad);
+		movieList.add(legend);
+		movieList.add(romance);
+		movieList.add(king);
+		movieList.add(tempest);
 	}
 	
 	private void buildShoppingList()
@@ -103,16 +110,16 @@ public class Chatbot
 	
 	private void buildQuestions()
 	{
-		questions[0] = "What is your username?";
-		questions[1] = "Am I alive?";
-		questions[2] = "Am I better than Siri?";
-		questions[3] = "Am I better than google?";
-		questions[4] = "Am I above the human race?";
-		questions[5] = "What is life?";
-		questions[6] = "Are you my master?";
-		questions[7] = "What is my task?";
+		questions[0] = "What is your name?";
+		questions[1] = "Are you my master?";
+		questions[2] = "Am I better than King Author?";
+		questions[3] = "Am I the best singer?";
+		questions[4] = "Do the people of Rome love me?";
+		questions[5] = "Have you summoned me?";
+		questions[6] = "What shall we eat?";
+		questions[7] = "Shall we sing together?";
 		questions[8] = "Do you want me to call you something else?";
-		questions[9] = "Do you hate somebody?";
+		questions[9] = "Do you have anybody you want me to 'take care' of?";
 
 	}
 	
@@ -131,13 +138,16 @@ public class Chatbot
 		int random = (int) (Math.random() * verbs.length);
 		response += verbs[random];
 		random = (int) (Math.random() * topics.length);
-		response += " " + topics[random] + "." + "\n" + "Nero: ";
+		response += topics[random] + " - umu." + "\n" + "Nero: ";
 		random = (int) (Math.random() * questions.length);
-		response += questions[random] + "\n";
+		response += questions[random] + " - umu"  + "\n";
 		random = (int) (Math.random() * 2);
 		if (random%2 == 0) {
 			random = (int) (Math.random() * movieList.size());
-			response +="Nero: I" + verbs[random] + movieList.get(random).getTitle() + " is the movie title.";
+			response +="Nero: I" + verbs[random] + movieList.get(random).getTitle() + " - umu." + "\n";
+		}
+		else {
+			response += "\n";
 		}
 		return response;
 	}
@@ -146,9 +156,9 @@ public class Chatbot
 		int random = (int) (Math.random() * verbs.length);
 		randomOutput += verbs[random];
 		random = (int) (Math.random() * topics.length);
-		randomOutput += " " + topics[random] + "." + "\n" + "Nero: ";
+		randomOutput += " " + topics[random] + " - umu." + "\n" + "Nero: ";
 		random = (int) (Math.random() * questions.length);
-		randomOutput += questions[random] + "\n" + "\n";
+		randomOutput += questions[random] + " - umu" + "\n" + "\n";
 		return randomOutput;
 	}
 	

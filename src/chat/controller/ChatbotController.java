@@ -26,11 +26,18 @@ public class ChatbotController {
 	
 	public String interactWithChatbot(String input) {
 		input += "";
-		if (input.length() > 5 && input != null) {
+		if (chatbot.lengthChecker(input) && !chatbot.quitChecker(input)) {
 			return chatbot.processConversation(input);
+		}
+		else if (chatbot.quitChecker(input)) {
+			close();
 		}
 		return "You did not type a correct sentence Master.";
 
+	}
+	private void close() {
+		display.displayText("See you later Master");
+		System.exit(0);
 	}
 	private String popupChat(String chat) {
 		String chatbotSays = "";
