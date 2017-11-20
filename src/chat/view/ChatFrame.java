@@ -3,6 +3,8 @@ package chat.view;
 import javax.swing.*;
 import chat.controller.ChatbotController;
 import chat.view.ChatPanel;
+import sun.audio.*;
+
 
 public class ChatFrame extends JFrame{
 	
