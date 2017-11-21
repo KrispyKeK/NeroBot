@@ -2,7 +2,7 @@ package chat.view;
 
 import chat.controller.ChatbotController;
 import chat.model.Chatbot;
-
+import sun.audio.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
@@ -33,11 +33,6 @@ public class ChatPanel extends JPanel{
 		colorButton = new JButton("Change Color");
 		randomButton = new JButton("Random Answer");
 		face = new JLabel(new ImageIcon(getClass().getResource("images/nero.png")));
-		try {
-			voice = AudioSystem.getAudioInputStream(Chatbot.class.getResourceAsStream("NeroVoice.wav"));
-		}
-		catch(Exception e) {
-		}
 		inputCounter = 0;
 	
 		setupPanel();
@@ -93,7 +88,6 @@ public class ChatPanel extends JPanel{
 				}
 				getInput();
 				setTextArea(getInput());
-				playVoice(voice);
 				inputCounter++;
 				inputField.setText("");
 			}
@@ -118,7 +112,6 @@ public class ChatPanel extends JPanel{
 				
 			}
 		});
-		
 	}
 	private String getInput() {
 		String userInput = "";
@@ -137,17 +130,4 @@ public class ChatPanel extends JPanel{
 	private void addRandomText() {
 		chatArea.append(appController.randomOutput());
 	}
-	public void playVoice(AudioInputStream Sound){
-		try {
-			Clip audio = AudioSystem.getClip();
-			audio.open(AudioSystem.getAudioInputStream(Sound));
-			audio.start();
-			Thread.sleep(2000);
-			audio.close();
-		}
-		catch(Exception e) {
-			
-		}
-	}
-	
 }

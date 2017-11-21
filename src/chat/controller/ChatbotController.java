@@ -51,12 +51,7 @@ public class ChatbotController {
 		return chatbot;
 	}
 	public ChatFrame getChatFrame() {
-		return null;
-	}
-	//Links to randomButton in chatPanel
-	public String randomResponse(String output) {
-		output = "";
-		return output;
+		return appFrame;
 	}
 	public String randomOutput() {
 		String randOut = "";

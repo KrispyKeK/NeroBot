@@ -64,9 +64,7 @@ public class Chatbot
 		verbs[6] = "despise ";
 		verbs[7] = "acustom to ";
 		verbs[8] = "weary about ";
-		verbs[9] = "disappointed about";
-		
-				
+		verbs[9] = "disappointed about";			
 	}
 	
 	private void buildMovieList()
@@ -83,8 +81,7 @@ public class Chatbot
 		movieList.add(romance);
 		movieList.add(king);
 		movieList.add(tempest);
-	}
-	
+	}	
 	private void buildShoppingList()
 	{
 		shoppingList.add("snacks");
@@ -98,9 +95,7 @@ public class Chatbot
 		shoppingList.add("sugar");
 		shoppingList.add("rice");
 		shoppingList.add("ice cream");
-
-	}
-	
+	}	
 	private void buildCuteAnimals()
 	{
 		cuteAnimalMemes.add("otter");
@@ -126,7 +121,6 @@ public class Chatbot
 	public String processConversation(String input)
 	{
 		String chatbotResponse = "Nero: ";
-		//chatbotResponse+= "You said " + "\n" + input + "\n";
 		chatbotResponse += buildChatbotResponse();
 		if (input != null && input.length() > 5) {
 			return chatbotResponse;
@@ -329,7 +323,7 @@ public class Chatbot
 	}
 	public String toString() {
 		String descr = "";
-		descr += "My User name is " ;
+		descr += "My name is nero";
 		return descr;
 	}
 }
