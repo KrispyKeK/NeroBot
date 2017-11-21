@@ -207,7 +207,7 @@ public class Chatbot
 	public boolean shoppingListChecker(String shoppingItem)
 	{
 		for (int i = 0; i < shoppingList.size(); i++) {
-			if (shoppingList.get(i).contains(shoppingItem)) {
+			if (shoppingList.get(i).equalsIgnoreCase(shoppingItem)) {
 				return true;
 			}
 		}
@@ -218,7 +218,7 @@ public class Chatbot
 	{
 		if (title.length() > 0 && title != null) {
 			for (int currentPlace = 0; currentPlace < movieList.size() - 1; currentPlace++) {
-				if (movieList.get(currentPlace).getTitle().contains(title)) {
+				if (movieList.get(currentPlace).getTitle().equalsIgnoreCase(title)) {
 					return true;
 				}
 				else if (title.contains("Spiderman") || title.contains("Hidden Figures")) {

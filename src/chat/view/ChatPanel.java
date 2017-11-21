@@ -110,7 +110,7 @@ public class ChatPanel extends JPanel{
 		});
 		checkerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				if (inputCounter > 1) {
+				if (inputCounter > 2) {
 					chatArea.setText("");
 				}
 				String userText = inputField.getText();
