@@ -27,7 +27,7 @@ public class Chatbot
 		this.shoppingList = new ArrayList<String>();
 		this.cuteAnimalMemes = new ArrayList<String>();
 		this.questions = new String[10];
-		this.username = username;
+		this.username = "Master" + username;
 		this.content = "ContentCopMemes";
 		this.intro = "Hey what's going on guys, it's Kripparian here";
 		this.currentTime = LocalTime.now();
@@ -62,11 +62,15 @@ public class Chatbot
 		verbs[4] = "hate ";
 		verbs[5] = "love ";
 		verbs[6] = "despise ";
-		verbs[7] = "acustom to ";
+		verbs[7] = "am acustommed to ";
 		verbs[8] = "weary about ";
 		verbs[9] = "disappointed about";			
 	}
 	
+	public String setIntro() {
+		String intro = "Nero: Hello Master, I am your humble servant, talk to me as much as you \n want to. - umu\n\n";
+		return intro;
+	}
 	private void buildMovieList()
 	{
 		Movie sparta = new Movie("Sparta");
@@ -125,7 +129,7 @@ public class Chatbot
 		if (input != null && input.length() > 5) {
 			return chatbotResponse;
 		}
-		return "You did not input a correct sentence Master";
+		return "Nero: You did not input a correct sentence Master";
 	}
 	private String buildChatbotResponse() {
 		String response= "I ";
@@ -194,7 +198,10 @@ public class Chatbot
 		if (input.contains("pepe")) {
 			return false;
 		}
-		return true;
+		else if (input.contains("pupper") || input.contains("kittie") || input.contains("otter")) {
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean shoppingListChecker(String shoppingItem)
@@ -210,7 +217,14 @@ public class Chatbot
 	public boolean movieTitleChecker(String title)
 	{
 		if (title.length() > 0 && title != null) {
-			return true;
+			for (int currentPlace = 0; currentPlace < movieList.size() - 1; currentPlace++) {
+				if (movieList.get(currentPlace).getTitle().contains(title)) {
+					return true;
+				}
+				else if (title.contains("Spiderman") || title.contains("Hidden Figures")) {
+					return true;
+				}
+			}
 
 		}
 		return false;

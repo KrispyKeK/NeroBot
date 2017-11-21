@@ -35,6 +35,50 @@ public class ChatbotController {
 		return "You did not type a correct sentence Master.";
 
 	}
+	public String useCheckers(String text) {
+		String response = "";
+		if (chatbot.contentChecker(text)) {
+			response += "Nero: This text matches the special content, Master\n";
+		}
+		if (chatbot.cuteAnimalMemeChecker(text)) {
+			response += "Nero: This animal is awfully cute, Master\n";
+		}
+		else {
+			response += "Nero: I do not find " + text + " as cute as a kitten Master\n";
+		}
+		if (chatbot.shoppingListChecker(text)) {
+			response += "Nero: I really want to eat " + text + " now, can you grab me some Master?\n";
+		}
+		else {
+			response += "Nero: I am sorry Master, but I do not like " + text + "\n";
+		}
+		if (chatbot.movieTitleChecker(text)) {
+			response += "Nero: I love the sound of that movie, perhaps we could watch it together\n";
+		}
+		else {
+			response += "Nero: That movie will probably bore me Master.\n";
+		}
+		if (chatbot.movieGenreChecker(text)) {
+			response += "Nero: I especially love that genre in theatre Master\n";
+		}
+		if (chatbot.keyboardMashChecker(text)) {
+			response += "Nero: I hear you crystal clear Master\n";
+		}
+		else {
+			response += "Nero: Are you okay Master? I don't quite understand that\n";
+		}
+		if (chatbot.userNameChecker(text)) {
+			response += "Nero: I love your name Master\n";
+		}
+		else {
+			response += "Nero: That is quite a uniqe name Master\n";
+		}
+		if (chatbot.htmlTagChecker(text)) {
+			response += "Nero: I do not know much about the internet, but I hope you're righte Master.\n";
+		}
+		return response;
+	}
+	
 	private void close() {
 		display.displayText("See you later Master");
 		System.exit(0);
@@ -57,6 +101,9 @@ public class ChatbotController {
 		String randOut = "";
 		randOut += "Nero: " +  chatbot.randomOutput();
 		return randOut;
+	}
+	public String sendIntro() {
+		return chatbot.setIntro();
 	}
 
 }

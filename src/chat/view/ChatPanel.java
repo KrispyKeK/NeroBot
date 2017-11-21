@@ -52,6 +52,7 @@ public class ChatPanel extends JPanel{
 		this.add(face);
 		chatArea.setEnabled(false);
 		chatArea.setEditable(false);
+		chatArea.setText(appController.sendIntro());
 	}
 	private void setupLayout() {
 		baseLayout.putConstraint(SpringLayout.NORTH, chatArea, 40, SpringLayout.NORTH, this);
@@ -109,7 +110,14 @@ public class ChatPanel extends JPanel{
 		});
 		checkerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				
+				if (inputCounter > 1) {
+					chatArea.setText("");
+				}
+				String userText = inputField.getText();
+				String displayText = appController.useCheckers(userText);
+				chatArea.append(displayText);
+				inputField.setText("");
+				inputCounter++;
 			}
 		});
 	}
