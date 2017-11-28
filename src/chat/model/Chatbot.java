@@ -44,7 +44,8 @@ public class Chatbot
 	}
 	
 	//Adds to the list Topics, and is called within Chatbot
-	private void buildTopics() {
+	private void buildTopics() 
+	{
 		topics[0] = "Rome";
 		topics[1] = "Enemies";
 		topics[2] = "Sparta";
@@ -54,7 +55,8 @@ public class Chatbot
 		topics[6] = "The people of Rome";
 	}
 	//Adds to the list verbs, and is called within Chatbot
-	private void buildVerbs() {
+	private void buildVerbs() 
+	{
 		verbs[0] = "like ";
 		verbs[1] = "dislike ";
 		verbs[2] = "am ambivalent about ";
@@ -67,18 +69,19 @@ public class Chatbot
 		verbs[9] = "disappointed about";			
 	}
 	
-	public String setIntro() {
+	public String setIntro() 
+	{
 		String intro = "Nero: Hello Master, I am your humble servant, talk to me as much as you \n want to. - umu\n\n";
 		return intro;
 	}
 	private void buildMovieList()
 	{
-		Movie sparta = new Movie("Sparta");
-		Movie glad = new Movie("Gladiator");
-		Movie legend = new Movie("Hercules");
-		Movie romance = new Movie("Romeo and Juliett");
-		Movie king = new Movie("Julius Caesar");
-		Movie tempest = new Movie("The Tempest");
+		Movie sparta = new Movie("sparta");
+		Movie glad = new Movie("gladiator");
+		Movie legend = new Movie("hercules");
+		Movie romance = new Movie("romeo and juliett");
+		Movie king = new Movie("julius caesar");
+		Movie tempest = new Movie("the tempest");
 		movieList.add(sparta);
 		movieList.add(glad);
 		movieList.add(legend);
@@ -121,6 +124,10 @@ public class Chatbot
 		questions[9] = "Do you have anybody you want me to 'take care' of?";
 
 	}
+	private void buildFollowUps() 
+	{
+		
+	}
 	
 	public String processConversation(String input)
 	{
@@ -147,6 +154,22 @@ public class Chatbot
 		else {
 			response += "\n";
 		}
+		int followup = (int)(Math.random() * followUps.length);
+		switch (followup) {
+		case 0:
+			response += followUps[0] + "\n";
+			break;
+		case 1:
+			response += followUps[1] + "\n";
+			break;
+		case 2:
+			response += followUps[2] + "\n";
+			break;
+		default:
+			response += followUps[3] + "\n";
+			response += followUps[4] + "\n";
+			break;
+		}
 		return response;
 	}
 	public String randomOutput() {
@@ -170,10 +193,49 @@ public class Chatbot
 	
 	public boolean htmlTagChecker(String input)
 	{
-		if (input.contains("<A HREF=\\\"sdfs.html\\\"> </a>") || input.contains("<P>") || input.contains("<I> sdadas </i>") || input.contains("<B>  </B>")) {
-			return true;
+		boolean partTwo = false;
+		boolean pChecker = false;
+		int stringCount = 0;
+		int prePlace = 1;
+		int curPlace = 2;
+		String inputTrim = input.trim();
+		if (inputTrim.startsWith("<") && partTwo != true) {
+			if (!inputTrim.substring(prePlace, curPlace).contains(">" + "what")) {
+				if (inputTrim.substring(prePlace, curPlace).contains("P")) {
+					stringCount++;
+					pChecker = true;
+				}
+				else {
+					stringCount++;
+				}
+				prePlace++;
+				curPlace++;
+			}
+			else if (inputTrim.substring(prePlace, curPlace).contains(">")) {
+				if (pChecker && stringCount == 1) {
+					return true;
+				}
+				else if (stringCount > 0 || stringCount > 7) {
+					partTwo = true;
+					prePlace = inputTrim.indexOf(">");
+					curPlace = prePlace + 1;
+					inputTrim.substring(0,inputTrim.indexOf(">"));
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
 		}
-		return false;
+		else if (partTwo) {
+			if (inputTrim.startsWith("<")) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	public boolean userNameChecker(String input)
@@ -218,7 +280,7 @@ public class Chatbot
 	{
 		if (title.length() > 0 && title != null) {
 			for (int currentPlace = 0; currentPlace < movieList.size() - 1; currentPlace++) {
-				if (movieList.get(currentPlace).getTitle().equalsIgnoreCase(title)) {
+				if (movieList.get(currentPlace).getTitle().contains(title.toLowerCase())) {
 					return true;
 				}
 				else if (title.contains("Spiderman") || title.contains("Hidden Figures")) {

@@ -31,7 +31,7 @@ public class ChatPanel extends JPanel{
 		inputField = new JTextField(25);
 		chatButton = new JButton("Enter");
 		colorButton = new JButton("Change Color");
-		randomButton = new JButton("Random Answer");
+		randomButton = new JButton("Random Answer");	
 		face = new JLabel(new ImageIcon(getClass().getResource("images/nero.png")));
 		inputCounter = 0;
 	
