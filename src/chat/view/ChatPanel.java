@@ -98,6 +98,21 @@ public class ChatPanel extends JPanel{
 				setRandomColor();
 			}
 		});
+		inputField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					if (inputCounter == 2) {
+						chatArea.setText("");
+						inputCounter = 0;
+					}
+					getInput();
+					setTextArea(getInput());
+					inputCounter++;
+					inputField.setText("");
+				}
+			}
+		});
 		randomButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
 				if (inputCounter == 3) {
