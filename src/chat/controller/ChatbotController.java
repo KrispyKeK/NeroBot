@@ -26,11 +26,14 @@ public class ChatbotController {
 	
 	public String interactWithChatbot(String input) {
 		input += "";
-		if (chatbot.lengthChecker(input) && !chatbot.quitChecker(input)) {
+		if (chatbot.lengthChecker(input) && !chatbot.quitChecker(input) && chatbot.answerChecker(input) != true) {
 			return chatbot.processConversation(input);
 		}
 		else if (chatbot.quitChecker(input)) {
 			close();
+		}
+		else if (chatbot.answerChecker(input)) {
+			return chatbot.processAnswer(input);
 		}
 		return "You did not type a correct sentence Master.";
 
@@ -80,7 +83,7 @@ public class ChatbotController {
 			response += "Nero: That is quite a uniqe name Master.\n";
 		}
 		if (chatbot.htmlTagChecker(text)) {
-			response += "Nero: I do not know much about the internet, but I hope you're righte Master.\n";
+			response += "Nero: I do not know much about the internet, but I hope you're right"+ "\n" + "Master.\n";
 		}
 		response += "\n";
 		return response;

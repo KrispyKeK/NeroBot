@@ -52,6 +52,8 @@ public class ChatPanel extends JPanel{
 		this.add(face);
 		chatArea.setEnabled(false);
 		chatArea.setEditable(false);
+		chatArea.setLineWrap(true);
+		chatArea.setWrapStyleWord(true);
 		chatArea.setText(appController.sendIntro());
 	}
 	private void setupLayout() {

@@ -15,6 +15,7 @@ public class Chatbot
 	private String [] topics;
 	private String [] followUps;
 	private String [] questions;
+	private String [] answers;
 	private String username;
 	private String content;
 	private String intro;
@@ -34,6 +35,7 @@ public class Chatbot
 		this.topics = new String[7];
 		this.verbs = new String[10];
 		this.followUps = new String[5];
+		this.answers = new String[4];
 		
 		buildVerbs();
 		buildQuestions();
@@ -41,8 +43,16 @@ public class Chatbot
 		buildMovieList();
 		buildTopics();
 		buildCuteAnimals();
+		buildFollowUps();
+		buildAnswers();
 	}
-	
+	private void buildAnswers() 
+	{
+		answers[0] = "Yes, Master";
+		answers[1] = "No, Master";
+		answers[2] = "I don't quite understand your question Master.";
+		answers[3] = "I'm sorry Master, but I don't know the answer to that.";
+	}
 	//Adds to the list Topics, and is called within Chatbot
 	private void buildTopics() 
 	{
@@ -67,8 +77,7 @@ public class Chatbot
 		verbs[7] = "am acustommed to ";
 		verbs[8] = "weary about ";
 		verbs[9] = "disappointed about";			
-	}
-	
+	}	
 	public String setIntro() 
 	{
 		String intro = "Nero: Hello Master, I am your humble servant, talk to me as much as you \n want to. - umu\n\n";
@@ -126,9 +135,19 @@ public class Chatbot
 	}
 	private void buildFollowUps() 
 	{
-		
+		followUps[0] = "Nice Weather we're having right Master?";
+		followUps[1] = "Perhaps we could fight strong foes today";
+		followUps[2] = "";
+		followUps[3] = "";
+		followUps[4] = "";
 	}
 	
+	public String processAnswer(String input) {
+		String response = "";
+		int random = (int)(Math.random() * answers.length);
+		response += "Nero: " + answers[random] + "\n";
+		return response;
+	}
 	public String processConversation(String input)
 	{
 		String chatbotResponse = "Nero: ";
@@ -157,17 +176,17 @@ public class Chatbot
 		int followup = (int)(Math.random() * followUps.length);
 		switch (followup) {
 		case 0:
-			response += followUps[0] + "\n";
+			response += "Nero: " + followUps[0] + "\n";
 			break;
 		case 1:
-			response += followUps[1] + "\n";
+			response += "Nero: " + followUps[1] + "\n";
 			break;
 		case 2:
-			response += followUps[2] + "\n";
+			response += "Nero: " + followUps[2] + "\n";
 			break;
 		default:
-			response += followUps[3] + "\n";
-			response += followUps[4] + "\n";
+			response += "Nero: " + followUps[3] + "\n";
+			response += "Nero: " + followUps[4] + "\n";
 			break;
 		}
 		return response;
@@ -237,7 +256,12 @@ public class Chatbot
 		}
 		return true;
 	}
-	
+	public boolean answerChecker(String input) {
+		if (input.endsWith("?")) {
+			return true;
+		}
+		return false;
+	}
 	public boolean userNameChecker(String input)
 	{
 		boolean isValidName = false;
@@ -269,7 +293,7 @@ public class Chatbot
 	public boolean shoppingListChecker(String shoppingItem)
 	{
 		for (int i = 0; i < shoppingList.size(); i++) {
-			if (shoppingList.get(i).equalsIgnoreCase(shoppingItem)) {
+			if (shoppingList.get(i).contains(shoppingItem.toLowerCase())) {
 				return true;
 			}
 		}
