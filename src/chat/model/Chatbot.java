@@ -1,7 +1,7 @@
 package chat.model;
 
 import java.util.List;
-import java.time.LocalTime;
+import java.time.*;
 import java.util.ArrayList;
 import java.util.*;
 
@@ -54,6 +54,11 @@ public class Chatbot
 		answers[3] = "I'm sorry Master, but I don't know the answer to that.";
 	}
 	//Adds to the list Topics, and is called within Chatbot
+	public String getTime() {
+		String time = "";
+		time += currentTime.getHour() + ": " + currentTime.getMinute() + " " + "\n";
+		return time;
+	}
 	private void buildTopics() 
 	{
 		topics[0] = "Rome";

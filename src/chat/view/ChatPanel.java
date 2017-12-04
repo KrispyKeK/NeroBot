@@ -2,12 +2,9 @@ package chat.view;
 
 import chat.controller.ChatbotController;
 import chat.model.Chatbot;
-import sun.audio.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
-import java.io.*;
-import javax.sound.sampled.*;
 
 public class ChatPanel extends JPanel{
 	
@@ -20,47 +17,58 @@ public class ChatPanel extends JPanel{
 	private JButton colorButton;
 	private JButton randomButton;
 	private JButton checkerButton;
-	private int inputCounter;
-	private AudioInputStream voice;
+	private JScrollPane scrollPane;
 	
 	public ChatPanel(ChatbotController appController) {
 		super();
 		this.appController = appController;		
 		baseLayout = new SpringLayout();
-		chatArea = new JTextArea(10,10);
 		inputField = new JTextField(25);
 		chatButton = new JButton("Enter");
 		colorButton = new JButton("Change Color");
 		randomButton = new JButton("Random Answer");	
+		checkerButton = new JButton("Checker");
+		scrollPane = new JScrollPane();
 		face = new JLabel(new ImageIcon(getClass().getResource("images/nero.png")));
-		inputCounter = 0;
 	
 		setupPanel();
 		setupLayout();
 		setupListeners();
+		setupScrollPane();
 	}
 	private void setupPanel() {		
 		this.setLayout(baseLayout);
 		this.setBackground(Color.DARK_GRAY);
+		
+		chatArea = new JTextArea(10,10);
+		chatArea.setEnabled(false);
+		chatArea.setEditable(false);
+		chatArea.setText(appController.sendIntro());
+		chatArea.setLineWrap(true);
+		chatArea.setWrapStyleWord(true);
+		
 		this.add(chatButton);
+		this.add(scrollPane);
 		this.add(randomButton);
-		checkerButton = new JButton("Checker");
 		this.add(checkerButton);
 		this.add(colorButton);
 		this.add(inputField);
-		this.add(chatArea);
 		this.add(face);
-		chatArea.setEnabled(false);
-		chatArea.setEditable(false);
-		chatArea.setLineWrap(true);
-		chatArea.setWrapStyleWord(true);
-		chatArea.setText(appController.sendIntro());
+		
 	}
 	private void setupLayout() {
-		baseLayout.putConstraint(SpringLayout.NORTH, chatArea, 40, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.WEST, chatArea, 230, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, chatArea, -180, SpringLayout.SOUTH, this);
-		baseLayout.putConstraint(SpringLayout.EAST, chatArea, -10, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, face, 0, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, colorButton, 349, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, colorButton, -19, SpringLayout.NORTH, inputField);		
+		baseLayout.putConstraint(SpringLayout.NORTH, randomButton, 349, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, randomButton, -19, SpringLayout.NORTH, chatButton);
+		baseLayout.putConstraint(SpringLayout.SOUTH, scrollPane, -19, SpringLayout.NORTH, randomButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, scrollPane, 10, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, scrollPane, 6, SpringLayout.EAST, face);
+		baseLayout.putConstraint(SpringLayout.EAST, scrollPane, 0, SpringLayout.EAST, chatButton);
+		baseLayout.putConstraint(SpringLayout.EAST, face, -93, SpringLayout.WEST, checkerButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, checkerButton, 349, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, checkerButton, -19, SpringLayout.NORTH, inputField);
 		baseLayout.putConstraint(SpringLayout.NORTH, inputField, 406, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.WEST, inputField, 10, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, inputField, -13, SpringLayout.SOUTH, this);
@@ -69,29 +77,21 @@ public class ChatPanel extends JPanel{
 		baseLayout.putConstraint(SpringLayout.SOUTH, chatButton, 0, SpringLayout.SOUTH, inputField);
 		baseLayout.putConstraint(SpringLayout.EAST, chatButton, -10, SpringLayout.EAST, this);
 		baseLayout.putConstraint(SpringLayout.NORTH, face, 0, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.WEST, face, 0, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, face, -6, SpringLayout.NORTH, inputField);
-		baseLayout.putConstraint(SpringLayout.EAST, face, -16, SpringLayout.WEST, chatArea);
 		baseLayout.putConstraint(SpringLayout.EAST, randomButton, 0, SpringLayout.EAST, chatButton);
-		baseLayout.putConstraint(SpringLayout.NORTH, randomButton, 29, SpringLayout.SOUTH, chatArea);
 		baseLayout.putConstraint(SpringLayout.EAST, colorButton, -6, SpringLayout.WEST, randomButton);
-		baseLayout.putConstraint(SpringLayout.NORTH, colorButton, 29, SpringLayout.SOUTH, chatArea);
-		baseLayout.putConstraint(SpringLayout.SOUTH, colorButton, -19, SpringLayout.NORTH, inputField);
-		baseLayout.putConstraint(SpringLayout.SOUTH, randomButton, 0, SpringLayout.SOUTH, checkerButton);
-		baseLayout.putConstraint(SpringLayout.NORTH, checkerButton, 29, SpringLayout.SOUTH, chatArea);
-		baseLayout.putConstraint(SpringLayout.SOUTH, checkerButton, -19, SpringLayout.NORTH, inputField);
 		baseLayout.putConstraint(SpringLayout.EAST, checkerButton, -8, SpringLayout.WEST, colorButton);
+	}
+	private void setupScrollPane() {
+		scrollPane.setViewportView(chatArea);
+		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 	}
 	private void setupListeners() {
 		chatButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				if (inputCounter == 2) {
-					chatArea.setText("");
-					inputCounter = 0;
-				}
 				getInput();
 				setTextArea(getInput());
-				inputCounter++;
 				inputField.setText("");
 			}
 		});
@@ -104,37 +104,23 @@ public class ChatPanel extends JPanel{
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					if (inputCounter == 2) {
-						chatArea.setText("");
-						inputCounter = 0;
-					}
 					getInput();
 					setTextArea(getInput());
-					inputCounter++;
 					inputField.setText("");
 				}
 			}
 		});
 		randomButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				if (inputCounter == 3) {
-					chatArea.setText("");
-					inputCounter = 0;
-				}
 				addRandomText();
-				inputCounter++;
 			}
 		});
 		checkerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				if (inputCounter > 2) {
-					chatArea.setText("");
-				}
 				String userText = inputField.getText();
 				String displayText = appController.useCheckers(userText);
 				chatArea.append(displayText);
 				inputField.setText("");
-				inputCounter++;
 			}
 		});
 	}
@@ -144,7 +130,7 @@ public class ChatPanel extends JPanel{
 		return userInput;
 	}
 	private void setTextArea(String inp) {
-		chatArea.append("You: " + getInput() + "\n" + "\n" + appController.interactWithChatbot(inp) + "\n" + "\n");
+		chatArea.append("You: " + getInput() + "\n" + "\n" + appController.interactWithChatbot(inp) + "\n" + "\n" + "\n" + appController.getTime());
 	}
 	private void setRandomColor() {
 		int red = (int)(Math.random() * 256);
