@@ -29,7 +29,7 @@ public class ChatPanel extends JPanel{
 		randomButton = new JButton("Random Answer");	
 		checkerButton = new JButton("Checker");
 		scrollPane = new JScrollPane();
-		face = new JLabel(new ImageIcon(getClass().getResource("images/nero.png")));
+		face = new JLabel(new ImageIcon(getClass().getResource("images/donut.png")));
 	
 		setupPanel();
 		setupLayout();
@@ -130,7 +130,7 @@ public class ChatPanel extends JPanel{
 		return userInput;
 	}
 	private void setTextArea(String inp) {
-		chatArea.append("You: " + getInput() + "\n" + "\n" + appController.interactWithChatbot(inp) + "\n" + "\n" + "\n" + appController.getTime());
+		chatArea.append("You: " + getInput() + "\n" + "\n" + appController.interactWithChatbot(inp) + "Time: " + appController.getTime() + "\n");
 	}
 	private void setRandomColor() {
 		int red = (int)(Math.random() * 256);
@@ -139,6 +139,6 @@ public class ChatPanel extends JPanel{
 		this.setBackground(new Color(red,green,blue));
 	}
 	private void addRandomText() {
-		chatArea.append(appController.randomOutput());
+		chatArea.append(appController.randomOutput() + "Time: " + appController.getTime() + "\n");
 	}
 }

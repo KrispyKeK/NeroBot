@@ -20,7 +20,7 @@ public class ChatFrame extends JFrame{
 	}
 	private void setupFrame() {
 		this.setContentPane(appPanel);
-		this.setTitle("Nero");
+		this.setTitle("Nero Cladius");
 		this.setSize(700,500);
 		this.setResizable(false);
 		this.setVisible(true);

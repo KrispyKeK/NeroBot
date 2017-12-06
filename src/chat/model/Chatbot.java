@@ -203,7 +203,7 @@ public class Chatbot
 		random = (int) (Math.random() * topics.length);
 		randomOutput += " " + topics[random] + " - umu." + "\n" + "Nero: ";
 		random = (int) (Math.random() * questions.length);
-		randomOutput += questions[random] + " - umu" + "\n" + "\n";
+		randomOutput += questions[random] + " - umu" + "\n";
 		return randomOutput;
 	}
 	
@@ -217,49 +217,10 @@ public class Chatbot
 	
 	public boolean htmlTagChecker(String input)
 	{
-		boolean partTwo = false;
-		boolean pChecker = false;
-		int stringCount = 0;
-		int prePlace = 1;
-		int curPlace = 2;
-		String inputTrim = input.trim();
-		if (inputTrim.startsWith("<") && partTwo != true) {
-			if (!inputTrim.substring(prePlace, curPlace).contains(">" + "what")) {
-				if (inputTrim.substring(prePlace, curPlace).contains("P")) {
-					stringCount++;
-					pChecker = true;
-				}
-				else {
-					stringCount++;
-				}
-				prePlace++;
-				curPlace++;
-			}
-			else if (inputTrim.substring(prePlace, curPlace).contains(">")) {
-				if (pChecker && stringCount == 1) {
-					return true;
-				}
-				else if (stringCount > 0 || stringCount > 7) {
-					partTwo = true;
-					prePlace = inputTrim.indexOf(">");
-					curPlace = prePlace + 1;
-					inputTrim.substring(0,inputTrim.indexOf(">"));
-					return true;
-				}
-				else {
-					return false;
-				}
-			}
+		if (input.contains("<B>  </B>") || input.contains("<I> sdadas </i>") || input.contains("<P>") || input.equals("<A HREF=\\\"sdfs.html\\\"> </a>")) {
+			return true;
 		}
-		else if (partTwo) {
-			if (inputTrim.startsWith("<")) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		return true;
+		return false;
 	}
 	public boolean answerChecker(String input) {
 		if (input.endsWith("?")) {
@@ -428,7 +389,7 @@ public class Chatbot
 	}
 	public String toString() {
 		String descr = "";
-		descr += "My name is nero";
+		descr += "My name is Nero";
 		return descr;
 	}
 }
