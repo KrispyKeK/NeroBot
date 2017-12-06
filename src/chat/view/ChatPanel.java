@@ -29,7 +29,7 @@ public class ChatPanel extends JPanel{
 		randomButton = new JButton("Random Answer");	
 		checkerButton = new JButton("Checker");
 		scrollPane = new JScrollPane();
-		face = new JLabel(new ImageIcon(getClass().getResource("images/donut.png")));
+		face = new JLabel(new ImageIcon(getClass().getResource("images/nero.png")));
 	
 		setupPanel();
 		setupLayout();
