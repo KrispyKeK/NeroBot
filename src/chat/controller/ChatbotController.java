@@ -115,5 +115,8 @@ public class ChatbotController {
 	public String sendIntro() {
 		return chatbot.setIntro();
 	}
+	public void handleErros(Exception error) {
+		display.displayText(error.getMessage());
+	}
 
 }
