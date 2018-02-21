@@ -15,6 +15,7 @@ public class ChatbotController {
 		chatbot = new Chatbot("J0AN TR0N2O0O");
 		appFrame = new ChatFrame(this);
 	}
+	//a method that is no longer used because they're is no need
 	public void start() {
 		//String response = display.collectResponse("What do you want to talk about: ");
 		//while (chatbot.lengthChecker(response) && !chatbot.quitChecker(response)) {
@@ -23,7 +24,7 @@ public class ChatbotController {
 //		}
 		
 	}
-	
+	//a method used to call out strings and list so that the chatbot may respond accordingly
 	public String interactWithChatbot(String input) {
 		input += "";
 		if (chatbot.lengthChecker(input) && !chatbot.quitChecker(input) && chatbot.answerChecker(input) != true) {
@@ -38,6 +39,7 @@ public class ChatbotController {
 		return "You did not type a correct sentence Master.";
 
 	}
+	//this checker is used for a button in JPanel so that it may correspond to the special checkers in Chatbot
 	public String useCheckers(String text) {
 		String response = "";
 		boolean movieCount = false;;
@@ -88,33 +90,40 @@ public class ChatbotController {
 		response += "\n";
 		return response;
 	}
-	
+	//a closing method for our JFrame
 	private void close() {
 		display.displayText("See you later Master");
 		System.exit(0);
 	}
+	//a now useless method
 	private String popupChat(String chat) {
 		String chatbotSays = "";
 		chatbotSays += chatbot.processConversation(chat);
 		return chatbotSays;
 	}
+	//return popupdisplay becaues it was required for the tester
 	public PopupDisplay getDisplay() {
 		return display;
 	}
+	//returns chatbot because it was required for the test
 	public Chatbot getChatbot() {
 		return chatbot;
 	}
+	//returns the frame 
 	public ChatFrame getChatFrame() {
 		return appFrame;
 	}
+	//a method that is used in the randomButton to generate a random statement from  the bot without the need of the user response
 	public String randomOutput() {
 		String randOut = "";
 		randOut += "Nero: " +  chatbot.randomOutput();
 		return randOut;
 	}
+	//I don't even know why this is here, I dont need it
 	public String sendIntro() {
 		return chatbot.setIntro();
 	}
+	//returns the current time. DOES NOT UPDATE DURING RUN
 	public String getTime() {
 		return chatbot.getTime();
 	}

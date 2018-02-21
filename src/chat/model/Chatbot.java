@@ -83,6 +83,7 @@ public class Chatbot
 		verbs[8] = "weary about ";
 		verbs[9] = "disappointed about";			
 	}	
+	
 	public String setIntro() 
 	{
 		String intro = "Nero: Hello Master, I am your humble servant, talk to me as much as you \n want to. - umu\n\n";
@@ -141,10 +142,10 @@ public class Chatbot
 	private void buildFollowUps() 
 	{
 		followUps[0] = "Nice Weather we're having right Master?";
-		followUps[1] = "Perhaps we could fight strong foes today";
-		followUps[2] = "";
-		followUps[3] = "";
-		followUps[4] = "";
+		followUps[1] = "Perhaps we could fight strong foes today.";
+		followUps[2] = "The queen bee may lay up to thousands of eggs daily.";
+		followUps[3] = "Pong was the first ever video game to be made.";
+		followUps[4] = "Answer to life is 49.";
 	}
 	
 	public String processAnswer(String input) {
@@ -176,7 +177,6 @@ public class Chatbot
 			response +="Nero: I" + verbs[random] + movieList.get(random).getTitle() + " - umu." + "\n";
 		}
 		else {
-			response += "\n";
 		}
 		int followup = (int)(Math.random() * followUps.length);
 		switch (followup) {
