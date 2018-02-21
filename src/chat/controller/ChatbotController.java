@@ -4,11 +4,13 @@ import chat.view.*;
 import java.util.*;
 import chat.model.Chatbot;
 import javax.swing.*;
+import chat.model.*;
 
 public class ChatbotController {
 	private PopupDisplay display;	
 	Chatbot chatbot;
 	ChatFrame appFrame;
+	CTECTwitter myTwitter;
 	
 	public ChatbotController() {
 		display = new PopupDisplay();
@@ -117,6 +119,9 @@ public class ChatbotController {
 	}
 	public void handleErros(Exception error) {
 		display.displayText(error.getMessage());
+	}
+	public void tweet(String text) {
+		myTwitter.sendTweet(text);
 	}
 
 }

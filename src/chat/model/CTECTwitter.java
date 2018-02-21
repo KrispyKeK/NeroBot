@@ -12,4 +12,15 @@ public class CTECTwitter {
 		this.controller = controller;
 		this.chatbotTwitter = TwitterFactory.getSingleton();
 	}
+	public void sendTweet(String textToTweet) {
+		try {
+			chatbotTwitter.updateStatus(textToTweet + "@ChabotCTEC");
+		}
+		catch(TwitterException tweetError) {
+			controller.handleErros(tweetError);
+		}
+		catch(Exception otherError) {
+			controller.handleErros(otherError);
+		}
+	}
 }
