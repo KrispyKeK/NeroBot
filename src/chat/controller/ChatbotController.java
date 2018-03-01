@@ -10,7 +10,7 @@ public class ChatbotController {
 	private PopupDisplay display;	
 	Chatbot chatbot;
 	ChatFrame appFrame;
-	CTECTwitter myTwitter;
+	CTECTwitters myTwitter;
 	
 	public ChatbotController() {
 		display = new PopupDisplay();

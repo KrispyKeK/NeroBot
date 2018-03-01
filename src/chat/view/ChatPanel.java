@@ -21,7 +21,6 @@ public class ChatPanel extends JPanel{
 	private JButton colorButton;
 	private JButton randomButton;
 	private JButton checkerButton;
-	private int inputCounter;
 	private JButton twitterButton;
 	private JButton saveButton;
 	private JButton loadButton;
@@ -54,7 +53,6 @@ public class ChatPanel extends JPanel{
 		face = new JLabel(new ImageIcon(getClass().getResource("images/nero.png")));
 		baseLayout.putConstraint(SpringLayout.NORTH, face, 10, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.WEST, face, 0, SpringLayout.WEST, inputField);
-		inputCounter = 0;
 		
 		setupPanel();
 		setupLayout();
@@ -112,16 +110,15 @@ public class ChatPanel extends JPanel{
 		baseLayout.putConstraint(SpringLayout.SOUTH, randomButton, 0, SpringLayout.SOUTH, checkerButton);
 	}
 	private void setupListeners() {
+		twitterButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent click) {
+				appController.tweet(inputField.getText());
+			}
+		});
 		chatButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				if (inputCounter == 2) {
-					chatArea.setText("");
-					inputCounter = 0;
-				}
 				getInput();
 				setTextArea(getInput());
-				inputCounter++;
-				inputField.setText("");
 			}
 		});
 		colorButton.addActionListener(new ActionListener() {
@@ -133,37 +130,21 @@ public class ChatPanel extends JPanel{
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					if (inputCounter == 2) {
-						chatArea.setText("");
-						inputCounter = 0;
-					}
 					getInput();
 					setTextArea(getInput());
-					inputCounter++;
-					inputField.setText("");
 				}
 			}
 		});
 		randomButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				if (inputCounter == 3) {
-					chatArea.setText("");
-					inputCounter = 0;
-				}
 				addRandomText();
-				inputCounter++;
 			}
 		});
 		checkerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
-				if (inputCounter > 2) {
-					chatArea.setText("");
-				}
 				String userText = inputField.getText();
 				String displayText = appController.useCheckers(userText);
 				chatArea.append(displayText);
-				inputField.setText("");
-				inputCounter++;
 			}
 		});
 	}
