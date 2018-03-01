@@ -8,7 +8,7 @@ public class PopupDisplay {
 	public ImageIcon prime;
 	
 	public PopupDisplay() {
-		icon = new ImageIcon(getClass().getResource("images/nero.png"));
+		icon = new ImageIcon(getClass().getResource("images/donut.png"));
 		windowTitle = "Sample";
 	}
 	public void displayText(String message) {

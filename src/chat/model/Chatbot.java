@@ -1,7 +1,7 @@
 package chat.model;
 
 import java.util.List;
-import java.time.LocalTime;
+import java.time.*;
 import java.util.ArrayList;
 import java.util.*;
 
@@ -54,6 +54,11 @@ public class Chatbot
 		answers[3] = "I'm sorry Master, but I don't know the answer to that.";
 	}
 	//Adds to the list Topics, and is called within Chatbot
+	public String getTime() {
+		String time = "";
+		time += currentTime.getHour() + ": " + currentTime.getMinute() + " " + "\n";
+		return time;
+	}
 	private void buildTopics() 
 	{
 		topics[0] = "Rome";
@@ -78,6 +83,7 @@ public class Chatbot
 		verbs[8] = "weary about ";
 		verbs[9] = "disappointed about";			
 	}	
+	
 	public String setIntro() 
 	{
 		String intro = "Nero: Hello Master, I am your humble servant, talk to me as much as you \n want to. - umu\n\n";
@@ -136,10 +142,10 @@ public class Chatbot
 	private void buildFollowUps() 
 	{
 		followUps[0] = "Nice Weather we're having right Master?";
-		followUps[1] = "Perhaps we could fight strong foes today";
-		followUps[2] = "";
-		followUps[3] = "";
-		followUps[4] = "";
+		followUps[1] = "Perhaps we could fight strong foes today.";
+		followUps[2] = "The queen bee may lay up to thousands of eggs daily.";
+		followUps[3] = "Pong was the first ever video game to be made.";
+		followUps[4] = "Answer to life is 49.";
 	}
 	
 	public String processAnswer(String input) {
@@ -171,7 +177,6 @@ public class Chatbot
 			response +="Nero: I" + verbs[random] + movieList.get(random).getTitle() + " - umu." + "\n";
 		}
 		else {
-			response += "\n";
 		}
 		int followup = (int)(Math.random() * followUps.length);
 		switch (followup) {
@@ -198,7 +203,7 @@ public class Chatbot
 		random = (int) (Math.random() * topics.length);
 		randomOutput += " " + topics[random] + " - umu." + "\n" + "Nero: ";
 		random = (int) (Math.random() * questions.length);
-		randomOutput += questions[random] + " - umu" + "\n" + "\n";
+		randomOutput += questions[random] + " - umu" + "\n";
 		return randomOutput;
 	}
 	
@@ -212,49 +217,10 @@ public class Chatbot
 	
 	public boolean htmlTagChecker(String input)
 	{
-		boolean partTwo = false;
-		boolean pChecker = false;
-		int stringCount = 0;
-		int prePlace = 1;
-		int curPlace = 2;
-		String inputTrim = input.trim();
-		if (inputTrim.startsWith("<") && partTwo != true) {
-			if (!inputTrim.substring(prePlace, curPlace).contains(">" + "what")) {
-				if (inputTrim.substring(prePlace, curPlace).contains("P")) {
-					stringCount++;
-					pChecker = true;
-				}
-				else {
-					stringCount++;
-				}
-				prePlace++;
-				curPlace++;
-			}
-			else if (inputTrim.substring(prePlace, curPlace).contains(">")) {
-				if (pChecker && stringCount == 1) {
-					return true;
-				}
-				else if (stringCount > 0 || stringCount > 7) {
-					partTwo = true;
-					prePlace = inputTrim.indexOf(">");
-					curPlace = prePlace + 1;
-					inputTrim.substring(0,inputTrim.indexOf(">"));
-					return true;
-				}
-				else {
-					return false;
-				}
-			}
+		if (input.contains("<B>  </B>") || input.contains("<I> sdadas </i>") || input.contains("<P>") || input.equals("<A HREF=\\\"sdfs.html\\\"> </a>")) {
+			return true;
 		}
-		else if (partTwo) {
-			if (inputTrim.startsWith("<")) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		return true;
+		return false;
 	}
 	public boolean answerChecker(String input) {
 		if (input.endsWith("?")) {
@@ -423,7 +389,7 @@ public class Chatbot
 	}
 	public String toString() {
 		String descr = "";
-		descr += "My name is nero";
+		descr += "My name is Nero";
 		return descr;
 	}
 }

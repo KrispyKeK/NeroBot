@@ -2,20 +2,21 @@ package chat.view;
 
 import chat.controller.ChatbotController;
 import chat.model.Chatbot;
-import sun.audio.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
-import java.io.*;
-import javax.sound.sampled.*;
 
 public class ChatPanel extends JPanel{
+<<<<<<< HEAD
 	
 	private JScrollPane scrollPane;
 <<<<<<< HEAD
 =======
 	
 >>>>>>> master
+=======
+	//intializes the componenets
+>>>>>>> AddingScrollPane
 	private ChatbotController appController;
 	
 	private SpringLayout baseLayout;
@@ -30,7 +31,11 @@ public class ChatPanel extends JPanel{
 	private JButton colorButton;
 	private JButton randomButton;
 	private JButton checkerButton;
+<<<<<<< HEAD
 	private JButton twitterButton;
+=======
+	private JScrollPane scrollPane;
+>>>>>>> AddingScrollPane
 	private JButton saveButton;
 	private JButton loadButton;
 	private JButton searchButton;
@@ -40,6 +45,7 @@ public class ChatPanel extends JPanel{
 		this.appController = appController;		
 		baseLayout = new SpringLayout();
 		inputField = new JTextField(25);
+<<<<<<< HEAD
 		chatButton = new JButton("Chat",new ImageIcon(getClass().getResource("images/chat.png")));
 		searchButton = new JButton("Search",new ImageIcon(getClass().getResource("images/Search.png")));
 		baseLayout.putConstraint(SpringLayout.EAST, searchButton, 0, SpringLayout.EAST, chatButton);
@@ -72,19 +78,55 @@ public class ChatPanel extends JPanel{
 		face = new JLabel(new ImageIcon(getClass().getResource("images/nero.png")));
 >>>>>>> master
 		
+=======
+		baseLayout.putConstraint(SpringLayout.NORTH, inputField, 408, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, inputField, 7, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.EAST, inputField, -103, SpringLayout.EAST, this);
+		searchButton = new JButton("Search",new ImageIcon(getClass().getResource("images/search.png")));
+		chatButton = new JButton("Enter", new ImageIcon(getClass().getResource("images/chat.png")));
+		baseLayout.putConstraint(SpringLayout.WEST, chatButton, 6, SpringLayout.EAST, inputField);
+		baseLayout.putConstraint(SpringLayout.SOUTH, chatButton, -46, SpringLayout.SOUTH, this);
+		saveButton = new JButton("Save",new ImageIcon(getClass().getResource("images/save.png")));
+		baseLayout.putConstraint(SpringLayout.SOUTH, saveButton, -22, SpringLayout.NORTH, chatButton);
+		baseLayout.putConstraint(SpringLayout.EAST, saveButton, -93, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, searchButton, 0, SpringLayout.NORTH, saveButton);
+		baseLayout.putConstraint(SpringLayout.EAST, searchButton, -6, SpringLayout.WEST, saveButton);
+		loadButton = new JButton("Load",new ImageIcon(getClass().getResource("images/load.png")));
+		baseLayout.putConstraint(SpringLayout.NORTH, loadButton, 0, SpringLayout.NORTH, saveButton);
+		baseLayout.putConstraint(SpringLayout.SOUTH, loadButton, -22, SpringLayout.NORTH, chatButton);
+		baseLayout.putConstraint(SpringLayout.EAST, loadButton, 0, SpringLayout.EAST, chatButton);
+		//colorButton = new JButton("Change Color", new ImageIcon(getClass().getResource("search/donut.png")));
+		randomButton = new JButton("Tweet", new ImageIcon(getClass().getResource("images/twitt.png")));
+		baseLayout.putConstraint(SpringLayout.NORTH, randomButton, 0, SpringLayout.NORTH, saveButton);
+		baseLayout.putConstraint(SpringLayout.WEST, randomButton, 336, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.EAST, randomButton, -6, SpringLayout.WEST, searchButton);
+		checkerButton = new JButton("Checker");
+		baseLayout.putConstraint(SpringLayout.SOUTH, inputField, 0, SpringLayout.SOUTH, checkerButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, checkerButton, 6, SpringLayout.SOUTH, chatButton);
+		baseLayout.putConstraint(SpringLayout.WEST, checkerButton, 0, SpringLayout.WEST, chatButton);
+		baseLayout.putConstraint(SpringLayout.EAST, checkerButton, -13, SpringLayout.EAST, this);
+		scrollPane = new JScrollPane();
+		face = new JLabel(new ImageIcon(getClass().getResource("images/donut.png")));
+		baseLayout.putConstraint(SpringLayout.NORTH, face, 129, SpringLayout.NORTH, this);
+	
+>>>>>>> AddingScrollPane
 		setupPanel();
 		setupLayout();
 		setupListeners();
 		setupScrollPane();
+<<<<<<< HEAD
 	}
 	private void setupScrollPane() {
 		scrollPane.setViewportView(chatArea);
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+=======
+>>>>>>> AddingScrollPane
 	}
 	private void setupPanel() {		
 		this.setLayout(baseLayout);
 		this.setBackground(Color.DARK_GRAY);
+<<<<<<< HEAD
 		scrollPane = new JScrollPane();
 <<<<<<< HEAD
 		baseLayout.putConstraint(SpringLayout.SOUTH, face, 0, SpringLayout.SOUTH, scrollPane);
@@ -95,10 +137,33 @@ public class ChatPanel extends JPanel{
 =======
 >>>>>>> master
 		chatArea = new JTextArea(10,10);
+=======
+		
+		this.add(chatButton);
+		this.add(scrollPane);
+		this.add(randomButton);
+		this.add(checkerButton);
+		//this.add(colorButton);
+		this.add(inputField);
+		this.add(face);
+		this.add(saveButton);
+		this.add(loadButton);
+		this.add(searchButton);
+		
+		chatArea = new JTextArea(10,10);
+		baseLayout.putConstraint(SpringLayout.EAST, face, -62, SpringLayout.WEST, scrollPane);
+		baseLayout.putConstraint(SpringLayout.NORTH, chatArea, 10, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, chatArea, 232, SpringLayout.WEST, scrollPane);
+		baseLayout.putConstraint(SpringLayout.SOUTH, chatArea, -6, SpringLayout.NORTH, scrollPane);
+		baseLayout.putConstraint(SpringLayout.EAST, chatArea, 0, SpringLayout.EAST, chatButton);
+		//add(chatArea);
+>>>>>>> AddingScrollPane
 		chatArea.setEnabled(false);
 		chatArea.setEditable(false);
+		chatArea.setText(appController.sendIntro());
 		chatArea.setLineWrap(true);
 		chatArea.setWrapStyleWord(true);
+<<<<<<< HEAD
 		chatArea.setText(appController.sendIntro());
 		//this.add(scrollPane);
 		this.add(searchButton);
@@ -149,7 +214,20 @@ public class ChatPanel extends JPanel{
 		baseLayout.putConstraint(SpringLayout.NORTH, colorButton, 29, SpringLayout.SOUTH, chatArea);
 		baseLayout.putConstraint(SpringLayout.SOUTH, colorButton, -19, SpringLayout.NORTH, inputField);
 		baseLayout.putConstraint(SpringLayout.SOUTH, randomButton, 0, SpringLayout.SOUTH, checkerButton);
+=======
+		
 	}
+	private void setupLayout() {
+
+>>>>>>> AddingScrollPane
+	}
+	//adds a JScrollPane so that it may scroll down the chatArea
+	private void setupScrollPane() {
+		scrollPane.setViewportView(chatArea);
+		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+	}
+	//buttons and the enter key is used here
 	private void setupListeners() {
 		twitterButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
@@ -179,14 +257,12 @@ public class ChatPanel extends JPanel{
 				getInput();
 				setTextArea(getInput());
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> AddingScrollPane
 				inputField.setText("");
 >>>>>>> master
-			}
-		});
-		colorButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent click) {
-				setRandomColor();
 			}
 		});
 		inputField.addKeyListener(new KeyAdapter() {
@@ -196,7 +272,10 @@ public class ChatPanel extends JPanel{
 					getInput();
 					setTextArea(getInput());
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> AddingScrollPane
 					inputField.setText("");
 >>>>>>> master
 				}
@@ -215,17 +294,22 @@ public class ChatPanel extends JPanel{
 <<<<<<< HEAD
 =======
 				inputField.setText("");
+<<<<<<< HEAD
 >>>>>>> master
+=======
+>>>>>>> AddingScrollPane
 			}
 		});
 	}
+	//a method to grab the user input probably not needed
 	private String getInput() {
 		String userInput = "";
 		userInput = inputField.getText();
 		return userInput;
 	}
+	//set the text areas
 	private void setTextArea(String inp) {
-		chatArea.append("You: " + getInput() + "\n" + "\n" + appController.interactWithChatbot(inp) + "\n" + "\n");
+		chatArea.append("You: " + getInput() + "\n" + "\n" + appController.interactWithChatbot(inp) + "Time: " + appController.getTime() + "\n");
 	}
 	private void setRandomColor() {
 		int red = (int)(Math.random() * 256);
@@ -234,6 +318,6 @@ public class ChatPanel extends JPanel{
 		this.setBackground(new Color(red,green,blue));
 	}
 	private void addRandomText() {
-		chatArea.append(appController.randomOutput());
+		chatArea.append(appController.randomOutput() + "Time: " + appController.getTime() + "\n");
 	}
 }

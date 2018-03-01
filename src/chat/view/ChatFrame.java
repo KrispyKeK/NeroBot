@@ -20,7 +20,11 @@ public class ChatFrame extends JFrame{
 	}
 	private void setupFrame() {
 		this.setContentPane(appPanel);
+<<<<<<< HEAD
 		this.setTitle("Nero");
+=======
+		this.setTitle("Nero Cladius");
+>>>>>>> AddingScrollPane
 		this.setSize(700,525);
 		this.setResizable(false);
 		this.setVisible(true);

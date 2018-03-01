@@ -4,6 +4,9 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="/Users/jdel8359/Downloads/twitter4j-4.0.4/twitter4j-core/twitter4j-core-4.0.4-javadoc.jar"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="/Users/jdel8359/Downloads/twitter4j-4.0.4/lib/twitter4j-core-4.0.4.jar"/>
+=======
+>>>>>>> AddingScrollPane
 	<classpathentry kind="output" path="bin"/>
 </classpath>
