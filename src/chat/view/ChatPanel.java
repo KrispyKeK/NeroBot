@@ -12,12 +12,21 @@ import javax.sound.sampled.*;
 public class ChatPanel extends JPanel{
 	
 	private JScrollPane scrollPane;
+<<<<<<< HEAD
+=======
+	
+>>>>>>> master
 	private ChatbotController appController;
+	
 	private SpringLayout baseLayout;
+	
 	private JTextArea chatArea;
+	
 	private JTextField inputField;
-	private JButton chatButton;
+	
 	private JLabel face;
+	
+	private JButton chatButton;
 	private JButton colorButton;
 	private JButton randomButton;
 	private JButton checkerButton;
@@ -35,6 +44,7 @@ public class ChatPanel extends JPanel{
 		searchButton = new JButton("Search",new ImageIcon(getClass().getResource("images/Search.png")));
 		baseLayout.putConstraint(SpringLayout.EAST, searchButton, 0, SpringLayout.EAST, chatButton);
 		loadButton = new JButton("Load",new ImageIcon(getClass().getResource("images/load.png")));
+<<<<<<< HEAD
 		baseLayout.putConstraint(SpringLayout.NORTH, loadButton, 0, SpringLayout.NORTH, searchButton);
 		baseLayout.putConstraint(SpringLayout.SOUTH, loadButton, 0, SpringLayout.SOUTH, searchButton);
 		baseLayout.putConstraint(SpringLayout.EAST, loadButton, -6, SpringLayout.WEST, searchButton);
@@ -53,6 +63,14 @@ public class ChatPanel extends JPanel{
 		face = new JLabel(new ImageIcon(getClass().getResource("images/nero.png")));
 		baseLayout.putConstraint(SpringLayout.NORTH, face, 10, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.WEST, face, 0, SpringLayout.WEST, inputField);
+=======
+		saveButton = new JButton("Save",new ImageIcon(getClass().getResource("images/save.png")));
+		twitterButton = new JButton("Twitter",new ImageIcon(getClass().getResource("images/twitt.png")));
+		colorButton = new JButton("Change Color");
+		randomButton = new JButton("Random Answer");	
+		checkerButton = new JButton("Checker");
+		face = new JLabel(new ImageIcon(getClass().getResource("images/nero.png")));
+>>>>>>> master
 		
 		setupPanel();
 		setupLayout();
@@ -68,11 +86,14 @@ public class ChatPanel extends JPanel{
 		this.setLayout(baseLayout);
 		this.setBackground(Color.DARK_GRAY);
 		scrollPane = new JScrollPane();
+<<<<<<< HEAD
 		baseLayout.putConstraint(SpringLayout.SOUTH, face, 0, SpringLayout.SOUTH, scrollPane);
 		baseLayout.putConstraint(SpringLayout.NORTH, scrollPane, 10, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.WEST, scrollPane, 230, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, scrollPane, -6, SpringLayout.NORTH, searchButton);
 		baseLayout.putConstraint(SpringLayout.EAST, scrollPane, 0, SpringLayout.EAST, searchButton);
+=======
+>>>>>>> master
 		chatArea = new JTextArea(10,10);
 		chatArea.setEnabled(false);
 		chatArea.setEditable(false);
@@ -94,6 +115,26 @@ public class ChatPanel extends JPanel{
 		this.add(scrollPane);
 	}
 	private void setupLayout() {
+<<<<<<< HEAD
+=======
+		baseLayout.putConstraint(SpringLayout.NORTH, loadButton, 0, SpringLayout.NORTH, searchButton);
+		baseLayout.putConstraint(SpringLayout.SOUTH, loadButton, 0, SpringLayout.SOUTH, searchButton);
+		baseLayout.putConstraint(SpringLayout.EAST, loadButton, -6, SpringLayout.WEST, searchButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, searchButton, 0, SpringLayout.NORTH, saveButton);
+		baseLayout.putConstraint(SpringLayout.EAST, twitterButton, -274, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, saveButton, 4, SpringLayout.EAST, twitterButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, saveButton, 0, SpringLayout.NORTH, twitterButton);
+		baseLayout.putConstraint(SpringLayout.SOUTH, twitterButton, -6, SpringLayout.NORTH, inputField);
+		baseLayout.putConstraint(SpringLayout.WEST, checkerButton, 6, SpringLayout.EAST, inputField);
+		baseLayout.putConstraint(SpringLayout.EAST, checkerButton, -10, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, face, 10, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, face, 0, SpringLayout.WEST, inputField);
+		baseLayout.putConstraint(SpringLayout.SOUTH, face, 0, SpringLayout.SOUTH, scrollPane);
+		baseLayout.putConstraint(SpringLayout.NORTH, scrollPane, 10, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, scrollPane, 230, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, scrollPane, -6, SpringLayout.NORTH, searchButton);
+		baseLayout.putConstraint(SpringLayout.EAST, scrollPane, 0, SpringLayout.EAST, searchButton);
+>>>>>>> master
 		baseLayout.putConstraint(SpringLayout.NORTH, checkerButton, 6, SpringLayout.SOUTH, chatButton);
 		baseLayout.putConstraint(SpringLayout.EAST, chatButton, -10, SpringLayout.EAST, this);
 		baseLayout.putConstraint(SpringLayout.EAST, inputField, -6, SpringLayout.WEST, chatButton);
@@ -115,10 +156,32 @@ public class ChatPanel extends JPanel{
 				appController.tweet(inputField.getText());
 			}
 		});
+<<<<<<< HEAD
+=======
+		searchButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent click) {
+				appController.tweet(inputField.getText());
+			}
+		});
+		saveButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent click) {
+				appController.tweet(inputField.getText());
+			}
+		});
+		loadButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent click) {
+				appController.tweet(inputField.getText());
+			}
+		});
+>>>>>>> master
 		chatButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent click) {
 				getInput();
 				setTextArea(getInput());
+<<<<<<< HEAD
+=======
+				inputField.setText("");
+>>>>>>> master
 			}
 		});
 		colorButton.addActionListener(new ActionListener() {
@@ -132,6 +195,10 @@ public class ChatPanel extends JPanel{
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					getInput();
 					setTextArea(getInput());
+<<<<<<< HEAD
+=======
+					inputField.setText("");
+>>>>>>> master
 				}
 			}
 		});
@@ -145,6 +212,10 @@ public class ChatPanel extends JPanel{
 				String userText = inputField.getText();
 				String displayText = appController.useCheckers(userText);
 				chatArea.append(displayText);
+<<<<<<< HEAD
+=======
+				inputField.setText("");
+>>>>>>> master
 			}
 		});
 	}
